@@ -20,7 +20,7 @@ body {
 
 /* Cute decorative elements */
 .cute-decoration {
-  position: fixed;
+  position: absolute;
   pointer-events: none;
   z-index: 1;
   font-size: 2rem;
