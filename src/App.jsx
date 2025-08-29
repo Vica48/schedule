@@ -103,13 +103,17 @@ export default function App(){
         removeContainer: true
       })
 
-      // Crear y descargar
-      const link = document.createElement('a')
-      link.download = 'horario-escolar.png'
-      link.href = canvas.toDataURL('image/png', 0.95)
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      // Crear y descargar como archivo
+      canvas.toBlob(blob => {
+        if (!blob) return
+        const link = document.createElement('a')
+        link.download = 'horario-escolar.png'
+        link.href = URL.createObjectURL(blob)
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(link.href)
+      }, 'image/png', 0.95)
 
     } catch (error) {
       console.error('Error detallado:', error)
@@ -122,10 +126,17 @@ export default function App(){
           logging: false
         })
         
-        const link = document.createElement('a')
-        link.download = 'horario-escolar.png'
-        link.href = simpleCanvas.toDataURL('image/png')
-        link.click()
+        // Descargar versión de baja resolución
+        simpleCanvas.toBlob(blob => {
+          if (!blob) return
+          const link = document.createElement('a')
+          link.download = 'horario-escolar.png'
+          link.href = URL.createObjectURL(blob)
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(link.href)
+        }, 'image/png')
         
       } catch (fallbackError) {
         console.error('Error en método alternativo:', fallbackError)
