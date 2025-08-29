@@ -42,7 +42,7 @@ export default function App(){
     return getDefaultEvents()
   })
 
-  const calendarWrapRef = useRef(null)
+  const exportRef = useRef(null)
   const colsRef = useRef({}) // map day -> ref to column
 
   // Agregar materia
@@ -85,7 +85,7 @@ export default function App(){
 
   // Exportar a PNG
   const onExport = async () => {
-    const wrap = calendarWrapRef.current
+    const wrap = exportRef.current
     if (!wrap) {
       alert('No se pudo encontrar el calendario para exportar.')
       return
@@ -159,7 +159,6 @@ export default function App(){
 
   return (
     <>
-      <CuteDecorations />
       <Header onExport={onExport} onClear={onClear} onRestoreDefaults={onRestoreDefaults} />
 
       <main className="grid grid-cols-[360px_1fr] max-lg:grid-cols-1 gap-6 p-6 max-w-6xl w-full mx-auto relative z-[5] mt-12">
@@ -179,12 +178,22 @@ export default function App(){
           onAdd={onAdd}
         />
 
-        <Calendar
-          events={events}
-          colsRef={colsRef}
-          calendarWrapRef={calendarWrapRef}
-          onDeleteEvent={onDeleteEvent}
-        />
+        <div
+          ref={exportRef}
+          className="relative p-6 flex items-center justify-center"
+          style={{
+            backgroundColor: '#f0f9ff',
+            backgroundImage: `linear-gradient(#dbeafe 1px, transparent 1px), linear-gradient(90deg, #dbeafe 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        >
+          <Calendar
+            events={events}
+            colsRef={colsRef}
+            onDeleteEvent={onDeleteEvent}
+          />
+          <CuteDecorations />
+        </div>
       </main>
     </>
   )

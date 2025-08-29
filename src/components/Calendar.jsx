@@ -14,7 +14,7 @@ const days = [
   { value: 5, label: 'Viernes' },
 ]
 
-export default function Calendar({ events, colsRef, calendarWrapRef, onDeleteEvent }) {
+export default function Calendar({ events, colsRef, onDeleteEvent }) {
   const hours = useMemo(() => {
     return ['7:00', '8:00', '9:00', '10:00', '11:00', '11:30', '12:30', '13:30']
   }, [])
@@ -31,9 +31,8 @@ export default function Calendar({ events, colsRef, calendarWrapRef, onDeleteEve
   }, [events])
 
   return (
-    <section 
-      className="bg-white border-4 border-blue-300 rounded-3xl overflow-hidden relative shadow-2xl cute-calendar" 
-      ref={calendarWrapRef} 
+    <section
+      className="bg-white border-4 border-blue-300 rounded-3xl overflow-visible relative shadow-2xl cute-calendar"
       aria-label="Horario Escolar"
       style={{
         background: 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)',
@@ -59,7 +58,7 @@ export default function Calendar({ events, colsRef, calendarWrapRef, onDeleteEve
       </div>
 
       {/* Calendar border decorations */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-visible">
         {/* Top border emojis */}
         <div className="absolute -top-4 left-16 text-3xl animate-bounce animation-delay-1000 transform -rotate-12">📝</div>
         <div className="absolute -top-6 left-32 text-2xl animate-bounce animation-delay-1500 transform rotate-12">🖍️</div>
