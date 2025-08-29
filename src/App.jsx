@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas'
 import Header from './components/Header'
 import EventForm from './components/EventForm'
 import Calendar from './components/Calendar'
+import CuteDecorations from './components/CuteDecorations'
 
 function timeToMinutes(t) {
   const [h, m] = t.split(':').map(Number)
@@ -22,8 +23,8 @@ export default function App(){
   const [title, setTitle] = useState('')
   const [day, setDay] = useState(1)
   const [color, setColor] = useState('#a7f3d0')
-  const [start, setStart] = useState('08:00')
-  const [end, setEnd] = useState('09:00')
+  const [start, setStart] = useState('07:00')
+  const [end, setEnd] = useState('08:00')
   const [notes, setNotes] = useState('')
 
   const [events, setEvents] = useState(() => {
@@ -47,8 +48,8 @@ export default function App(){
   // Agregar materia
   const onAdd = () => {
     const t = title.trim() || 'Materia'
-    let s = timeToMinutes(start || '08:00')
-    let e = timeToMinutes(end || '09:00')
+    let s = timeToMinutes(start || '07:00')
+    let e = timeToMinutes(end || '08:00')
     if (e <= s) e = s + 60
 
     setEvents(prev => [
@@ -147,9 +148,10 @@ export default function App(){
 
   return (
     <>
+      <CuteDecorations />
       <Header onExport={onExport} onClear={onClear} onRestoreDefaults={onRestoreDefaults} />
 
-      <main className="grid grid-cols-[360px_1fr] max-lg:grid-cols-1 gap-6 p-6 max-w-6xl w-full mx-auto">
+      <main className="grid grid-cols-[360px_1fr] max-lg:grid-cols-1 gap-6 p-6 max-w-6xl w-full mx-auto relative z-[5] mt-12">
         <EventForm
           title={title}
           setTitle={setTitle}
