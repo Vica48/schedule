@@ -57,6 +57,37 @@ export default function Calendar({ events, colsRef, calendarWrapRef, onDeleteEve
           </h2>
         </div>
       </div>
+
+      {/* Calendar border decorations */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Top border emojis */}
+        <div className="absolute -top-4 left-16 text-3xl animate-bounce animation-delay-1000 transform -rotate-12">📝</div>
+        <div className="absolute -top-6 left-32 text-2xl animate-bounce animation-delay-1500 transform rotate-12">🖍️</div>
+        <div className="absolute -top-4 right-32 text-3xl animate-bounce animation-delay-500 transform rotate-6">📐</div>
+        <div className="absolute -top-6 right-16 text-2xl animate-bounce animation-delay-2000 transform -rotate-6">🍎</div>
+        
+        {/* Left border emojis */}
+        <div className="absolute -left-6 top-24 text-3xl animate-bounce animation-delay-1000 transform rotate-12">✂️</div>
+        <div className="absolute -left-4 top-40 text-2xl animate-bounce animation-delay-1500 transform -rotate-12">📏</div>
+        <div className="absolute -left-6 top-56 text-3xl animate-bounce animation-delay-500 transform rotate-6">🖊️</div>
+        
+        {/* Right border emojis */}
+        <div className="absolute -right-6 top-24 text-3xl animate-bounce animation-delay-2000 transform -rotate-12">🔍</div>
+        <div className="absolute -right-4 top-40 text-2xl animate-bounce animation-delay-1000 transform rotate-12">📊</div>
+        <div className="absolute -right-6 top-56 text-3xl animate-bounce animation-delay-1500 transform -rotate-6">🎨</div>
+        
+        {/* Bottom border emojis */}
+        <div className="absolute -bottom-6 left-20 text-3xl animate-bounce animation-delay-500 transform rotate-12">📒</div>
+        <div className="absolute -bottom-4 left-40 text-2xl animate-bounce animation-delay-1000 transform -rotate-12">🖇️</div>
+        <div className="absolute -bottom-6 right-40 text-3xl animate-bounce animation-delay-1500 transform rotate-6">📎</div>
+        <div className="absolute -bottom-4 right-20 text-2xl animate-bounce animation-delay-2000 transform -rotate-6">🏫</div>
+        
+        {/* Corner emojis */}
+        <div className="absolute -top-6 -left-6 text-4xl animate-bounce animation-delay-1500 transform rotate-12">📚</div>
+        <div className="absolute -top-6 -right-6 text-4xl animate-bounce animation-delay-1000 transform -rotate-12">✏️</div>
+        <div className="absolute -bottom-6 -left-6 text-4xl animate-bounce animation-delay-2000 transform -rotate-12">📋</div>
+        <div className="absolute -bottom-6 -right-6 text-4xl animate-bounce animation-delay-500 transform rotate-12">🌟</div>
+      </div>
       
       <CalendarHeader />
 
@@ -73,6 +104,15 @@ export default function Calendar({ events, colsRef, calendarWrapRef, onDeleteEve
             >
               <span className="mr-2 text-xs opacity-50">⏰</span>
               {h}
+              {i === 0 && (
+                <div className="absolute left-1 top-1 text-xs opacity-20">☀️</div>
+              )}
+              {i === 3 && (
+                <div className="absolute left-1 top-1 text-xs opacity-20">🌤️</div>
+              )}
+              {i === 6 && (
+                <div className="absolute left-1 top-1 text-xs opacity-20">🌅</div>
+              )}
             </div>
           ))}
         </div>
@@ -102,6 +142,11 @@ export default function Calendar({ events, colsRef, calendarWrapRef, onDeleteEve
                   {i === 0 && (
                     <div className="absolute top-1 right-1 text-xs opacity-30">
                       {['📚', '✏️', '📐', '🎨', '🌟'][dayIndex]}
+                    </div>
+                  )}
+                  {i === 6 && ( // Last row - add bottom decorative emojis
+                    <div className="absolute bottom-1 left-1 text-xs opacity-20">
+                      {['📝', '🖍️', '📏', '✂️', '🍎'][dayIndex]}
                     </div>
                   )}
                 </div>

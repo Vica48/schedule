@@ -56,6 +56,10 @@ main {
   animation-delay: 1.5s;
 }
 
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
 /* Cute calendar specific styles */
 .cute-calendar {
   transform: translateZ(0);
@@ -105,6 +109,11 @@ main {
   
   /* Hide floating title decoration in print */
   .cute-calendar > div:first-child {
+    display: none !important;
+  }
+  
+  /* Hide calendar border emojis in print */
+  .cute-calendar > div:nth-child(2) {
     display: none !important;
   }
   
